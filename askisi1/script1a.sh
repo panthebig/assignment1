@@ -16,9 +16,17 @@ if [[ $url == "#${url:1:${#url}-1}" ]]; then
 	continue
 fi
 
-wget -O index1.html $url
+wget_output=$(wget -O index1.html $url)
+if [ $? -ne 0 ]; then
+	echo "$url FAILED"
+	arr[$url]=0
+	continue
+fi
+
 id="$(md5sum index1.html)"
 id=${id:0:32}
+
+
 
 #echo ${arr[$url]}
 if [ -v arr[$url] ]; then
