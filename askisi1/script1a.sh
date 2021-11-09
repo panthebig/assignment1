@@ -1,5 +1,5 @@
 filename='WebsitesToCheck'
-source saved.sh
+
 n=1
 
 if [ -e saved.sh ]; then		#check file existance
@@ -19,7 +19,7 @@ fi
 mkdir temp
 cd temp
 
-wget_output=$(wget -O index1.html $url)
+wget_output=$(wget -q -O index1.html $url)
 if [ $? -ne 0 ]; then
 	echo "$url FAILED"
 	arr[$url]=0
