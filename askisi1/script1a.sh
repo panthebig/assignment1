@@ -16,6 +16,9 @@ if [[ $url == "#${url:1:${#url}-1}" ]]; then
 	continue
 fi
 
+mkdir temp
+cd temp
+
 wget_output=$(wget -O index1.html $url)
 if [ $? -ne 0 ]; then
 	echo "$url FAILED"
@@ -42,7 +45,8 @@ if [ ! -v arr[$url] ]; then
 	echo "$url INIT"
 fi
 
-
+cd ..
+rm -r temp
 
 #echo $id
 #md5sum index1.html
@@ -50,6 +54,7 @@ fi
 #echo "Url No. $n : $url"
 n=$((n+1))
 done < $filename
+
 
 
 declare -p arr > saved.sh
