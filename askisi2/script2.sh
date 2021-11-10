@@ -2,6 +2,9 @@ filename="tmp"
 
 ls * -R > $filename
 
+
+#tar -xf test.tar.gz
+
 while read line; do
 
 if [[ $line == "#${line:1:${#line}-1}" ]]; then
