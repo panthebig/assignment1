@@ -1,10 +1,11 @@
 filename="tmp"
 directory=""
+homedir=$(pwd)
 
 ls * -R > $filename
 mkdir assignments > /dev/null 2>&1
 
-#tar -xf test.tar.gz
+tar -xf test.tar.gz
 
 while read line; do
 
@@ -35,8 +36,10 @@ if [[ ".txt" == "${line:${#line}-4:${#line}-1}" ]]; then
 	
 		if [[ "https:" == "${url:0:6}" ]] && [[ ".git" == "${url:${#url}-4:${#url}-1}" ]]; then
 			#echo "inside if"
-			cd -	> /dev/null 2>&1
+			cd $homedir > /dev/null 2>&1
+
 			cd assignments	> /dev/null
+
 			
 			if ! git clone -q $url > /dev/null 2>&1
 			then
@@ -61,6 +64,7 @@ fi
 done < $filename
 cd - > /dev/null 2>&1
 
+#get inside dir ls and check file names
 #change repositories file names and print num of dir-files
 #check dir structure  if its ok
 
