@@ -4,7 +4,15 @@
 parse=false
 filename="tmp.txt"
 
+if [ $1 == "--help" ] || [ $1 == "-h" ] ; then
+	echo "Two arguments are given as input."
+	echo "The name of the file and the most N frequent words to be printed"
+	echo "bash screipt3a.sh < filename > < N >"
+	exit
+fi
+
 while read line; do
+
 
 if [[ $line == *"*** END OF THIS PROJECT GUTENBERG"* ]]; then
   break
