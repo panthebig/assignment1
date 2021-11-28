@@ -1,9 +1,9 @@
-filename='WebsitesToCheck'
+filename=$1
 
 n=1
 
 if [ -e saved.sh ]; then		#check file existance
-	echo "loaded file"
+	#echo "loaded file"
 	source saved.sh
 else
 	declare -A arr
@@ -16,13 +16,14 @@ if [[ $url == "#${url:1:${#url}-1}" ]]; then
 	continue
 fi
 
-mkdir temp
+mkdir temp > /dev/null 2>&1
 cd temp
 
 wget_output=$(wget -q -O index1.html $url)
 if [ $? -ne 0 ]; then
 	echo "$url FAILED"
 	arr[$url]=0
+	cd ..
 	continue
 fi
 
@@ -46,6 +47,7 @@ if [ ! -v arr[$url] ]; then
 fi
 
 cd ..
+
 rm -r temp
 
 #echo $id
